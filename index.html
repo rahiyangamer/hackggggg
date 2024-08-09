@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HACKING MASTER</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #add8e6; /* হালকা নীল রঙ */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* পূর্ণ উচ্চতা */
+            position: relative;
+        }
+        .header {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            width: 100%; /* পূর্ণ প্রস্থ */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 20px;
+            margin-bottom: 20px; /* ড্রপডাউন মেনুর নিচে জায়গা তৈরি */
+        }
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            width: 100%;
+            text-align: left;
+        }
+        .dropbtn::after {
+            content: " ▼"; /* ডাউন আইকন */
+            font-size: 12px;
+            margin-left: 8px;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            min-width: 160px;
+            top: 100%; /* ড্রপডাউন মেনুর অবস্থান সঠিক করতে */
+            left: 0;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown-label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .info {
+            text-align: center;
+            max-width: 600px;
+            margin-top: 20px; /* ড্রপডাউন মেনুর ওপর থেকে জায়গা তৈরি */
+        }
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+        .facebook-interface,
+        .birthdate-interface,
+        .coming-soon {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .facebook-interface,
+        .birthdate-interface {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .facebook-interface input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .facebook-interface input[type="submit"],
+        .birthdate-interface input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .birthdate-interface input[type="date"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .coming-soon {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    HACKING MASTER
+</div>
+
+<div class="dropdown">
+    <span class="dropdown-label">Select Hack Media</span>
+    <button class="dropbtn" id="dropdownButton" onclick="toggleDropdown()">Select</button>
+    <div class="dropdown-content" id="dropdownMenu">
+        <a href="#" onclick="selectOption('facebook')">Facebook</a>
+        <a href="#" onclick="selectOption('gmail')">Gmail</a>
+    </div>
+</div>
+
+<div class="facebook-interface" id="facebookInterface">
+    <p>Enter your Facebook link below:</p>
+    <input type="text" id="facebookLink" placeholder="Enter Facebook link">
+    <input type="submit" value="Submit" onclick="showBirthdateInterface()">
+</div>
+
+<div class="birthdate-interface" id="birthdateInterface">
+    <p>Enter your birthdate below:</p>
+    <input type="date" id="birthdate">
+    <input type="submit" value="Submit">
+</div>
+
+<div class="coming-soon" id="comingSoon">
+    Coming Soon
+</div>
+
+<div class="footer">
+    ® Hacking Master 2024
+</div>
+
+<script>
+    let selectedOption = "";
+
+    function toggleDropdown() {
+        var dropdown = document.getElementById("dropdownMenu");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+
+    function selectOption(option) {
+        selectedOption = option;
+        document.getElementById("facebookInterface").style.display = "none";
+        document.getElementById("birthdateInterface").style.display = "none";
+        document.getElementById("comingSoon").style.display = "none";
+
+        if (option === 'facebook') {
+            document.getElementById("facebookInterface").style.display = "flex";
+        } else if (option === 'gmail') {
+            document.getElementById("comingSoon").style.display = "block";
+        }
+
+        document.getElementById("dropdownButton").textContent = option.charAt(0).toUpperCase() + option.slice(1); // Show selected option
+        document.getElementById("dropdownMenu").style.display = "none"; // Hide dropdown menu
+    }
+
+    function showBirthdateInterface() {
+        document.getElementById("facebookInterface").style.display = "none";
+        document.getElementById("birthdateInterface").style.display = "flex";
+    }
+</script>
+
+</body>
+</html>
